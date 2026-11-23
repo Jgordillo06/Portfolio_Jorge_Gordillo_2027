@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Your Name – Engineering Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F8FA; --surface:#FFFFFF; --ink:#111827; --muted:#5B6575; --line:#E2E6EC;
+  --brand:#1D4ED8; --brand-ink:#FFFFFF; --chip:#EAF0FF; --chip-ink:#1E3A8A;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E131A; --surface:#161C25; --ink:#EDF1F6; --muted:#9AA6B6; --line:#262F3B;
+    --brand:#6EA0FF; --brand-ink:#0E131A; --chip:#1D2A44; --chip-ink:#BCD2FF; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E131A; --surface:#161C25; --ink:#EDF1F6; --muted:#9AA6B6; --line:#262F3B;
+  --brand:#6EA0FF; --brand-ink:#0E131A; --chip:#1D2A44; --chip-ink:#BCD2FF; color-scheme:dark;
+}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;font-size:1rem;line-height:1.65}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--surface);z-index:10}
+a{color:var(--brand)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--brand);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 1.25rem}
+
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--surface);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:56px}
+.brand{font-weight:600;text-decoration:none;color:var(--ink)}
+.bar nav{display:flex;gap:1.25rem;font-size:.95rem;overflow-x:auto}
+.bar nav a{color:var(--muted);text-decoration:none;white-space:nowrap}
+.bar nav a:hover{color:var(--brand)}
+
+/* hero */
+.hero{padding:3.5rem 0 3rem;display:grid;grid-template-columns:1fr 300px;gap:2.5rem;align-items:start}
+.avatar{width:88px;height:88px;border-radius:50%;object-fit:cover;background:var(--chip);color:var(--chip-ink);display:flex;align-items:center;justify-content:center;font-size:1.9rem;font-weight:600;margin-bottom:1.2rem}
+h1{font-size:clamp(2.2rem,6vw,3.4rem);line-height:1.1;margin:0 0 .5rem;font-weight:700;letter-spacing:-.02em}
+.sub{font-size:1.2rem;color:var(--muted);margin:0 0 1.2rem}
+.bio{max-width:36em;margin:0 0 1.6rem}
+.btns{display:flex;flex-wrap:wrap;gap:.6rem}
+.btn{display:inline-block;padding:.6rem 1.1rem;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-weight:500;text-decoration:none}
+.btn:hover{border-color:var(--brand)}
+.btn.primary{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+.glance{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.2rem 1.3rem}
+.glance h2{font-size:.95rem;margin:0 0 .6rem;color:var(--muted);font-weight:600}
+.glance dl{margin:0}
+.glance dt{font-size:.85rem;color:var(--muted);margin-top:.7rem}
+.glance dd{margin:0;font-weight:500}
+.avail{display:inline-flex;align-items:center;gap:.5rem;margin-top:1rem;padding:.35rem .75rem;border-radius:99px;background:var(--chip);color:var(--chip-ink);font-size:.9rem;font-weight:500}
+.avail::before{content:"";width:8px;height:8px;border-radius:50%;background:#16A34A}
+
+/* sections */
+section{padding:2.5rem 0 .5rem}
+.sec h2{font-size:1.6rem;margin:0 0 1.3rem;letter-spacing:-.01em}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:1.25rem}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.4rem;display:flex;flex-direction:column}
+.card h3{margin:0 0 .3rem;font-size:1.25rem}
+.card .sum{color:var(--muted);margin:0 0 .9rem}
+.card dl{margin:0 0 1rem;display:grid;gap:.6rem}
+.card dt{font-size:.8rem;font-weight:600;color:var(--brand)}
+.card dd{margin:.1rem 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin:0;padding:0;list-style:none}
+.chips li{padding:.15rem .65rem;border-radius:99px;background:var(--chip);color:var(--chip-ink);font-size:.85rem;font-weight:500}
+.meta{margin-top:auto;padding-top:1rem;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;font-size:.9rem;color:var(--muted)}
+.meta a{font-weight:500}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem}
+.skills h3{margin:0 0 .7rem;font-size:1rem}
+.row{display:grid;grid-template-columns:150px 1fr;gap:.2rem 1.5rem;padding:1rem 0;border-top:1px solid var(--line)}
+.row:first-of-type{border-top:0}
+.row .when{color:var(--muted);font-size:.9rem;padding-top:.15rem}
+.row h3{margin:0;font-size:1.05rem}
+.row .org{color:var(--muted)}
+.row p{margin:.3rem 0 0}
+.contact{margin:3rem 0 0;padding:2.5rem 0;border-top:1px solid var(--line)}
+.contact h2{margin:0 0 .5rem;font-size:1.6rem}
+footer{padding:1rem 0 2.5rem;color:var(--muted);font-size:.85rem}
+@media(max-width:800px){.hero{grid-template-columns:1fr}.row{grid-template-columns:1fr}.bar nav{gap:1rem}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="bar"><div class="wrap">
+  <a class="brand" href="#top" id="brand"></a>
+  <nav aria-label="Sections"><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#education">Education</a><a href="#contact">Contact</a></nav>
+</div></header>
+
+<main class="wrap" id="top">
+  <div class="hero">
+    <div>
+      <div id="avatar"></div>
+      <h1 id="name"></h1>
+      <p class="sub" id="title"></p>
+      <p class="bio" id="bio"></p>
+      <div class="btns" id="buttons"></div>
+    </div>
+    <aside class="glance"><h2>At a glance</h2><dl id="glance"></dl><span class="avail" id="avail"></span></aside>
+  </div>
+
+  <section class="sec" id="projects"><h2>Projects</h2><div class="grid" id="projectList"></div></section>
+  <section class="sec" id="skills"><h2>Skills</h2><div class="skills" id="skillList"></div></section>
+  <section class="sec" id="experience"><h2>Experience and activities</h2><div id="expList"></div></section>
+  <section class="sec" id="education"><h2>Education</h2><div id="eduList"></div></section>
+
+  <div class="contact" id="contact">
+    <h2>Get in touch</h2>
+    <p id="contactText"></p>
+    <a class="btn primary" id="contactBtn" href="#"></a>
+  </div>
+  <footer id="footer"></footer>
+</main>
+
+<script>
+/* =====================================================================
+   EDIT THIS SECTION ONLY. Replace the sample text with your own.
+   Keep the quotes "" and commas , exactly as they are.
+   Leave a field as "" to hide it.
+   ===================================================================== */
+const SITE = {
+  name: "Your Name",
+  title: "Mechanical Engineering student at Your University",
+  bio: "I design, build, and test things, from CAD models to working prototypes. I’m looking for an engineering internship or part-time role where I can contribute to real projects and learn from experienced engineers.",
+  photo: "",                       // e.g. "me.jpg" (upload it next to this file). Blank shows your initials.
+  email: "you@university.edu",
+  resume: "resume.pdf",            // upload your PDF next to this file, or leave "" to hide
+  links: [
+    { label: "LinkedIn", url: "https://www.linkedin.com/in/your-handle" },
+    { label: "GitHub",   url: "https://github.com/your-handle" }
+  ],
+  availability: "Available May–Aug 2027",
+  glance: [
+    ["School", "Your University"],
+    ["Degree", "B.S. Mechanical Engineering"],
+    ["Graduating", "May 2028"],
+    ["Focus", "Controls, thermal systems, prototyping"]
+  ],
+  projects: [
+    {
+      title: "Autonomous Line-Following Robot",
+      summary: "A small robot that follows a track and avoids obstacles, built for a controls course.",
+      problem: "The robot had to finish a timed course without human input.",
+      process: "Modeled the chassis in SolidWorks, wired the sensors and motor driver, and tuned a PID controller over several test runs.",
+      result: "Finished 22% faster than the class average with no off-track failures in final testing.",
+      tags: ["SolidWorks", "Arduino", "C++", "PID control"],
+      role: "Team lead, 4 people", term: "Fall 2026",
+      links: [{ label: "Report", url: "#" }, { label: "Code", url: "#" }, { label: "Demo video", url: "#" }]
+    },
+    {
+      title: "Heat Sink Optimization Study",
+      summary: "Compared fin geometries to cool a power electronics module.",
+      problem: "The original heat sink ran too hot under sustained load.",
+      process: "Calculated heat transfer by hand, simulated three fin designs, and validated the best one with a 3D-printed prototype.",
+      result: "Cut peak temperature by 14°C while keeping weight within 5% of the original.",
+      tags: ["MATLAB", "Fusion 360", "Thermal analysis", "3D printing"],
+      role: "Solo project", term: "Spring 2026",
+      links: [{ label: "Report", url: "#" }, { label: "Slides", url: "#" }]
+    },
+    {
+      title: "Custom PCB Weather Station",
+      summary: "A battery-powered sensor board that logs temperature, humidity, and pressure.",
+      problem: "Off-the-shelf loggers were too bulky and expensive for a campus sensing project.",
+      process: "Designed the schematic and layout in KiCad, soldered the board, and wrote Python scripts to collect and plot the data.",
+      result: "Ran for 3 weeks on one battery charge at a parts cost under $25.",
+      tags: ["KiCad", "Python", "Soldering", "Embedded"],
+      role: "Designer and builder", term: "Summer 2026",
+      links: [{ label: "GitHub", url: "#" }, { label: "Schematic", url: "#" }]
+    }
+  ],
+  skills: {
+    "Software and tools": ["SolidWorks", "Fusion 360", "MATLAB", "Python", "C/C++", "KiCad", "LabVIEW", "Excel", "Git"],
+    "Hands-on": ["3D printing", "Prototyping", "Soldering", "Circuit testing", "Basic machining", "Data collection"],
+    "Engineering": ["Statics and dynamics", "Thermodynamics", "Controls", "Circuits", "Technical writing"]
+  },
+  experience: [
+    { when: "2026 – present", title: "Design team member", org: "Your Team or Club",
+      text: "Describe your role and one result, for example: redesigned the mounting bracket and saved 0.4 kg." },
+    { when: "Summer 2026", title: "Part-time job or lab assistant", org: "Employer name",
+      text: "Even non-engineering jobs show reliability and teamwork. Add one specific accomplishment." }
+  ],
+  education: [
+    { when: "Expected May 2028", title: "B.S. Mechanical Engineering", org: "Your University",
+      text: "GPA 3.x. Coursework: Statics, Thermodynamics, Circuits, Materials Science, Controls." }
+  ],
+  contactText: "I’m open to internships and part-time roles, on-site or remote."
+};
+/* ===================== END OF EDITABLE SECTION ===================== */
+
+(function () {
+  const $ = id => document.getElementById(id);
+  const el = (tag, props, ...kids) => {
+    const n = document.createElement(tag);
+    Object.entries(props || {}).forEach(([k, v]) => k === "class" ? n.className = v : n.setAttribute(k, v));
+    kids.flat().forEach(k => n.append(k));
+    return n;
+  };
+  const link = (l, cls) => { const a = el("a", { href: l.url, class: cls || "" }, l.label); if (/^https?:/.test(l.url)) { a.target = "_blank"; a.rel = "noopener"; } return a; };
+  const S = SITE;
+
+  document.title = S.name + " – Engineering Portfolio";
+  $("brand").textContent = S.name;
+  $("name").textContent = S.name;
+  $("title").textContent = S.title;
+  $("bio").textContent = S.bio;
+
+  const initials = S.name.split(/\s+/).map(w => w[0]).slice(0, 2).join("").toUpperCase();
+  $("avatar").append(S.photo ? el("img", { class: "avatar", src: S.photo, alt: S.name }) : el("div", { class: "avatar", "aria-hidden": "true" }, initials));
+
+  const b = $("buttons");
+  if (S.email) b.append(el("a", { class: "btn primary", href: "mailto:" + S.email }, "Email me"));
+  if (S.resume) b.append(link({ label: "Resume (PDF)", url: S.resume }, "btn"));
+  S.links.forEach(l => b.append(link(l, "btn")));
+
+  S.glance.forEach(([k, v]) => $("glance").append(el("dt", {}, k), el("dd", {}, v)));
+  S.availability ? $("avail").textContent = S.availability : $("avail").remove();
+
+  S.projects.forEach(p => {
+    const dl = el("dl", {});
+    [["Problem", p.problem], ["Process", p.process], ["Result", p.result]].forEach(([k, v]) => v && dl.append(el("div", {}, el("dt", {}, k), el("dd", {}, v))));
+    const meta = el("div", { class: "meta" });
+    if (p.role) meta.append(el("span", {}, p.role));
+    if (p.term) meta.append(el("span", {}, p.term));
+    (p.links || []).forEach(l => meta.append(link(l)));
+    $("projectList").append(el("article", { class: "card" },
+      el("h3", {}, p.title), el("p", { class: "sum" }, p.summary), dl,
+      el("ul", { class: "chips", "aria-label": "Tools" }, p.tags.map(t => el("li", {}, t))), meta));
+  });
+
+  Object.entries(S.skills).forEach(([group, items]) =>
+    $("skillList").append(el("div", {}, el("h3", {}, group), el("ul", { class: "chips" }, items.map(i => el("li", {}, i))))));
+
+  const rows = (list, target) => list.forEach(r => $(target).append(el("div", { class: "row" },
+    el("div", { class: "when" }, r.when),
+    el("div", {}, el("h3", {}, r.title, el("span", { class: "org" }, " · " + r.org)), el("p", {}, r.text)))));
+  rows(S.experience, "expList");
+  rows(S.education, "eduList");
+
+  $("contactText").textContent = S.contactText;
+  $("contactBtn").textContent = S.email;
+  $("contactBtn").href = "mailto:" + S.email;
+  $("footer").textContent = "© " + new Date().getFullYear() + " " + S.name;
+})();
+</script>
+</body>
+</html>
